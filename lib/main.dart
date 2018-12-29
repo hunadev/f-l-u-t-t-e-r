@@ -9,10 +9,12 @@ import 'util/Utils.dart';
 void main() async {
   Map _data = await getJson();
 
-  List properties = _data['features'];
-  for (int i = 0; i < properties.length; i++) {
-    print(properties[i]['properties']['mag']);
-  }
+//  String properties = _data['coord'];
+//  for (int i = 0; i < properties.length; i++) {
+//    print(properties[i]['properties']['mag']);
+//  }
+
+  print(_data['coord']);
   runApp(new MaterialApp(
       title: "the APP title",
       home: new Scaffold(
@@ -50,7 +52,7 @@ void main() async {
 }
 
 Future<Map> getJson() async {
-  String apiUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
+  String apiUrl = "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=${appId}&unit=imperial";
   http.Response res = await http.get(apiUrl);
   return json.decode(res.body);
 }
