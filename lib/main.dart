@@ -16,37 +16,18 @@ void main() async {
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text("hello app"),
+          backgroundColor: Colors.black,
+          actions: <Widget>[
+            new IconButton(icon: Icon(Icons.menu  ), onPressed:  _handleOnMenuCLicked)
+          ],
         ),
-        body: new Center(
-            child: new ListView.builder(
-          padding: const EdgeInsets.all(14.5),
-          itemCount: _data.length,
-          itemBuilder: (BuildContext context, int position) {
-            return new Column(
-              children: <Widget>[
-                new Divider(
-                  height: 5.5,
-                ),
-                new ListTile(
-                  title: new Text(
-                    "${properties[position]['properties']['place']}",
-                    style:
-                        new TextStyle(fontSize: 22.00, color: Colors.redAccent),
-                  ),
-                  subtitle: new Text(
-                    "${properties[position]['properties']['title']}",
-                    style: new TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                  leading: new CircleAvatar(
-                    child: Text("${properties[position]['properties']['title'][0]}"),
-                  ),
-                  onTap: () =>
-                      _showOntapMessage(context, properties[position]['properties']['title']),
-                )
-              ],
-            );
-          },
-        )),
+        body:new Stack(
+          children: <Widget>[
+            Center(
+              child: Image.asset("images/bg.jpeg"),
+            )
+          ],
+        ),
       )));
 }
 
@@ -54,6 +35,10 @@ Future<Map> getJson() async {
   String apiUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
   http.Response res = await http.get(apiUrl);
   return json.decode(res.body);
+}
+
+void _handleOnMenuCLicked(){
+  print("clicked hen");
 }
 
 void _showOntapMessage(BuildContext context, String msg) {
