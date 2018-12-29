@@ -39,7 +39,7 @@ void main() async {
                   trailing: new CircleAvatar(
                     child: Text("${_data[position]['body'][0]}"),
                   ),
-                  onTap: () => debugPrint("HELLo clicked $position"),
+                  onTap:()=>_showOntapMessage(context,_data[position]['title']),
                 )
               ],
             );
@@ -52,4 +52,19 @@ Future<List> getJson() async {
   String apiUrl = "https://jsonplaceholder.typicode.com/posts";
   http.Response res = await http.get(apiUrl);
   return json.decode(res.body);
+}
+
+void _showOntapMessage(BuildContext context, String msg){
+  var alert = new AlertDialog(
+    title: Text("MY app"),
+    content: Text(msg),
+    actions: <Widget>[
+      FlatButton(
+        child: Text("OK"),onPressed: (){
+          Navigator.pop(context);
+      },
+      )
+    ],
+  );
+  showDialog(context: context,builder:(context)=>alert );
 }
