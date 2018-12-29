@@ -7,14 +7,7 @@ import 'package:http/http.dart' as http;
 import 'util/Utils.dart';
 
 void main() async {
-  Map _data = await getJson();
 
-//  String properties = _data['coord'];
-//  for (int i = 0; i < properties.length; i++) {
-//    print(properties[i]['properties']['mag']);
-//  }
-
-  print(_data['coord']);
   runApp(new MaterialApp(
       title: "the APP title",
       home: new Scaffold(
@@ -52,13 +45,21 @@ void main() async {
 }
 
 Future<Map> getJson() async {
-  String apiUrl = "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=${appId}&unit=imperial";
+  String apiUrl = "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=${appId},units=imperial";
   http.Response res = await http.get(apiUrl);
   return json.decode(res.body);
 }
 
-void _handleOnMenuCLicked(){
+void _handleOnMenuCLicked() async{
   print("clicked hen");
+  Map _data = await getJson();
+
+//  String properties = _data['coord'];
+//  for (int i = 0; i < properties.length; i++) {
+//    print(properties[i]['properties']['mag']);
+//  }
+
+  print(_data);
 }
 
 void _showOntapMessage(BuildContext context, String msg) {
