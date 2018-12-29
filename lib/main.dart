@@ -28,7 +28,7 @@ void main() async {
             ),
             new Container(
             alignment: Alignment.topRight,
-              margin: const EdgeInsets.fromLTRB(0, 10, 20, 00),
+              margin: const EdgeInsets.fromLTRB(0, 10, 20, 00), // CAI NAY CANH TOA DO CUA CAI TEXT
               child: new Text("add text to app", style: cityStyle()),
             )
           ],
