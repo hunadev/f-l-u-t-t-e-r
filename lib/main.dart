@@ -24,7 +24,7 @@ void main() async {
         body:new Stack(
           children: <Widget>[
             Center(
-              child: Image.asset("images/bg.jpeg"),
+              child: Image.asset("images/bg.jpeg",fit: BoxFit.fill,height: 1800,),
             )
           ],
         ),
