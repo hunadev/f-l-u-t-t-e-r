@@ -35,7 +35,13 @@ void main() async {
             new Container(
               alignment: Alignment.center,
               child: new Image.asset("images/light_rain.png"),
-            )
+            ),
+            
+            new Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 290.0, 50.0, 0.0), // CAI NAY CANH TOA DO CUA CAI TEXT
+              alignment: Alignment.center,
+              child: new Text("22.12", style: weatherTextStyle(),),
+            ),
           ],
         ),
       )));
@@ -72,5 +78,14 @@ TextStyle cityStyle(){
     color: Colors.white,
     fontSize: 23,
     fontStyle: FontStyle.italic
+  );
+}
+
+TextStyle weatherTextStyle(){
+  return new TextStyle(
+      color: Colors.white,
+      fontSize: 63,
+      fontStyle: FontStyle.italic,
+    fontWeight: FontWeight.w900
   );
 }
