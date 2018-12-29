@@ -27,9 +27,14 @@ void main() async {
               child: Image.asset("images/bg.jpeg",fit: BoxFit.fill,height: 1800,),
             ),
             new Container(
-            alignment: Alignment.topRight,
+            alignment: Alignment.topRight, // MAKE ICON CENTER 
               margin: const EdgeInsets.fromLTRB(0, 10, 20, 00), // CAI NAY CANH TOA DO CUA CAI TEXT
               child: new Text("add text to app", style: cityStyle()),
+            ),
+
+            new Container(
+              alignment: Alignment.center,
+              child: new Image.asset("images/light_rain.png"),
             )
           ],
         ),
