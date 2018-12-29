@@ -6,8 +6,11 @@ import 'package:http/http.dart' as http;
 
 void main() async {
 
-  String _data = await getJson();
-  print("HUUHOANG: "+_data);
+  List _data = await getJson();
+  print(" ${_data[99]['title']} ${_data.length}");
+  for(int i =0; i< _data.length; i++){
+    print("id: ${_data[i]['id']} \t title: ${_data[i]['title']}");
+  }
   runApp(new MaterialApp(
       title: "the APP title",
       home: new Scaffold(
@@ -15,14 +18,14 @@ void main() async {
           title: new Text("hello app"),
         ),
         body: new Center(
-            child: new Text(_data)
+            child: new Text("${_data[0]['body']}")
         ),
       )
   ));
 }
 
-Future<String> getJson() async {
-  String apiUrl = "https://jsonplaceholder.typicode.com/posts/1";
+Future<List> getJson() async {
+  String apiUrl = "https://jsonplaceholder.typicode.com/posts";
   http.Response res = await http.get(apiUrl);
-  return json.decode(res.body).toString();
+  return json.decode(res.body);
 }
