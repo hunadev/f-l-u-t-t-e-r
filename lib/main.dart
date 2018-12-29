@@ -37,12 +37,26 @@ void main() async {
             new Container(
               margin: const EdgeInsets.fromLTRB(0.0, 290.0, 50.0, 0.0), // CAI NAY CANH TOA DO CUA CAI TEXT
               alignment: Alignment.center,
-              child: new Text("22.12", style: weatherTextStyle(),),
+              child: _updateTempWidget(),
             ),
           ],
         ),
       )));
 }
+
+Widget _updateTempWidget() {
+  return new FutureBuilder(
+      future: getJson(),
+      builder: (BuildContext context, AsyncSnapshot<Map> snapshot) {
+        if (snapshot.hasData) {
+          Map content = snapshot.data;
+          return new Text(content['main']['temp'].toString(), style: weatherTextStyle(),); // push to the widget
+        }else{
+          return new Container(); // avoid error if data loading
+        }
+      });
+}
+
 
 Future<Map> getJson() async {
   String apiUrl = "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=${appId},units=imperial";
