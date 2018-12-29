@@ -25,6 +25,11 @@ void main() async {
           children: <Widget>[
             Center(
               child: Image.asset("images/bg.jpeg",fit: BoxFit.fill,height: 1800,),
+            ),
+            new Container(
+            alignment: Alignment.topRight,
+              margin: const EdgeInsets.fromLTRB(0, 10, 20, 00),
+              child: new Text("add text to app", style: cityStyle()),
             )
           ],
         ),
@@ -55,4 +60,12 @@ void _showOntapMessage(BuildContext context, String msg) {
     ],
   );
   showDialog(context: context, builder: (context) => alert);
+}
+
+TextStyle cityStyle(){
+  return new TextStyle(
+    color: Colors.white,
+    fontSize: 23,
+    fontStyle: FontStyle.italic
+  );
 }
