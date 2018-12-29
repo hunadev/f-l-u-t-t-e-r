@@ -21,7 +21,7 @@ void main() async {
             new IconButton(icon: Icon(Icons.menu  ), onPressed:  _handleOnMenuCLicked)
           ],
         ),
-        body:new Stack(
+        body:new Stack( // stack like Relative layout hen
           children: <Widget>[
             Center(
               child: Image.asset("images/bg.jpeg",fit: BoxFit.fill,height: 1800,),
