@@ -34,6 +34,10 @@ class FirstScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(todos[index].title),
+                  onTap: ()=> onTapTodoItemEvent(context, index),
+                  trailing: Icon(Icons.hearing),
+                  leading: Icon(Icons.router,),
+                  subtitle: Text("sub title"),
                 );
               },
             ),
@@ -42,6 +46,15 @@ class FirstScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+onTapTodoItemEvent(BuildContext context, int index) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => DetailScreen(todo: todos[index]),
+    ),
+  );
 }
 
 class SecondScreen extends StatelessWidget {
