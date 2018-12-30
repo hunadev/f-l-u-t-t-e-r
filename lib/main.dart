@@ -15,16 +15,30 @@ class FirstScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('First Screen'),
       ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Launch screen'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondScreen()),
-            );
-          },
-        ),
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: RaisedButton(
+              child: Text('Launch screen'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SecondScreen()),
+                );
+              },
+            ),
+          ),
+          Container(
+            child: ListView.builder(
+              itemCount: todos.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(todos[index].title),
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }
