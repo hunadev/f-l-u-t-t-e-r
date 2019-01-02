@@ -22,6 +22,19 @@ class _HomeState extends State<Home> {
           return NextScreen(name: editext.text);
         }
       ));
+      
+      if(result.containsKey("info")){
+        print("result data: ${result['info'].toString()}");
+      }else{
+        if(result['info'].toString().length == 0 || result['info'].toString().isEmpty){
+          print("result data: empty data");
+
+        }else{
+          print("result data: No data back");
+
+        }
+
+      }
   }
 
   @override
