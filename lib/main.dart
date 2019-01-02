@@ -15,6 +15,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   var editext = new TextEditingController();
 
+  Future gotoNextScreen(BuildContext context) async{
+      Map result = await Navigator.of(context)
+          .push(MaterialPageRoute(
+        builder: (BuildContext context){
+          return NextScreen(name: editext.text);
+        }
+      ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +43,7 @@ class _HomeState extends State<Home> {
           new ListTile(
             title: new RaisedButton(
                 child: Text("Send to next screen"),
-                onPressed: () {
-
-                  var router =  MaterialPageRoute(builder: (context) => NextScreen(name: "HUUHOANG",));
-                  Navigator.push(context, router);
-                }),
+                onPressed:()=> gotoNextScreen(context)),
           )
         ],
       ),
@@ -49,25 +54,38 @@ class _HomeState extends State<Home> {
 class NextScreen extends StatefulWidget {
   final String name;
 
-  const NextScreen({Key key, this.name}) : super(key: key);
-
+  NextScreen({Key key, this.name}) : super(key: key);
 
   @override
   _NextScreenState createState() => _NextScreenState();
 }
 
 class _NextScreenState extends State<NextScreen> {
+  var backEditext = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: Text("Second title"),
-        backgroundColor: Colors.grey,
-        centerTitle: true,
-      ),
-      body: new ListTile(
-        title: new Text("${this.widget.name}"),
-      ),
-    );
+        appBar: new AppBar(
+          title: Text("Second title"),
+          backgroundColor: Colors.grey,
+          centerTitle: true,
+        ),
+        body: new Container(
+          child: new Column(
+            children: <Widget>[
+              new ListTile(
+                title: new TextField(
+                  controller: backEditext,
+                ),
+              ),
+              new FlatButton(onPressed: (){
+                Navigator.pop(context,{
+                  'info': backEditext.text
+                });
+              }, child: new Text("${widget.name}"))
+            ],
+          ),
+        ));
   }
 }
